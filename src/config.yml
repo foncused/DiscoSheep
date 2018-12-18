@@ -12,5 +12,5 @@ damage: 0.0
 # Should the sheep glow when damaged?
 glow: true
 
-# Should the sheep fly up in the air when punched?
+# Should the sheep fly up in the air when damaged?
 rocket: true
