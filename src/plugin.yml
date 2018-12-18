@@ -1,0 +1,5 @@
+name: DiscoSheep
+main: me.foncused.discosheep.DiscoSheep
+version: 1.0.0
+author: foncused
+api-version: 1.13
