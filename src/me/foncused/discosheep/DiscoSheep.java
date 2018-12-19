@@ -1,5 +1,6 @@
 package me.foncused.discosheep;
 
+import me.foncused.discosheep.event.DiscoSheepEvent;
 import me.foncused.discosheep.event.entity.EntityDamage;
 import me.foncused.discosheep.event.entity.EntityDamageByEntity;
 import org.bukkit.Bukkit;
@@ -25,13 +26,13 @@ public class DiscoSheep extends JavaPlugin {
 	}
 
 	private void registerEvents() {
+		new DiscoSheepEvent(this.sheeps);
 		final PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new EntityDamage(this.sheeps), this);
+		pm.registerEvents(new EntityDamage(), this);
 		final FileConfiguration config = this.getConfig();
 		pm.registerEvents(
 				new EntityDamageByEntity(
 						this,
-						this.sheeps,
 						config.getInt("speed"),
 						config.getDouble("damage"),
 						config.getBoolean("glow"),

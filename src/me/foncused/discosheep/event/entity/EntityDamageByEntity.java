@@ -1,6 +1,7 @@
 package me.foncused.discosheep.event.entity;
 
 import me.foncused.discosheep.DiscoSheep;
+import me.foncused.discosheep.event.DiscoSheepEvent;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -11,20 +12,16 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.Set;
-
-public class EntityDamageByEntity implements Listener {
+public class EntityDamageByEntity extends DiscoSheepEvent implements Listener {
 
 	private DiscoSheep plugin;
-	private Set<String> sheeps;
 	private int speed = 10;
 	private double damage = 1.0;
 	private boolean glow = true;
 	private boolean rocket = true;
 
-	public EntityDamageByEntity(final DiscoSheep plugin, final Set<String> sheeps, final int speed, final double damage, final boolean glow, final boolean rocket) {
+	public EntityDamageByEntity(final DiscoSheep plugin, final int speed, final double damage, final boolean glow, final boolean rocket) {
 		this.plugin = plugin;
-		this.sheeps = sheeps;
 		this.speed = speed;
 		this.damage = damage;
 		this.glow = glow;
@@ -79,7 +76,7 @@ public class EntityDamageByEntity implements Listener {
 					}.runTaskLater(this.plugin, 1);
 				}
 				final String uuid = sheep.getUniqueId().toString();
-				if(this.sheeps.add(uuid)) {
+				if(sheeps.add(uuid)) {
 					sheep.setGlowing(this.glow);
 					new BukkitRunnable() {
 						final DyeColor[] colors = DyeColor.values();
