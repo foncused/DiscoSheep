@@ -1,6 +1,5 @@
 package me.foncused.discosheep;
 
-import me.foncused.discosheep.event.DiscoSheepEvent;
 import me.foncused.discosheep.event.entity.EntityDamage;
 import me.foncused.discosheep.event.entity.EntityDamageByEntity;
 import org.bukkit.Bukkit;
@@ -14,6 +13,7 @@ import java.util.Set;
 public class DiscoSheep extends JavaPlugin {
 
 	private Set<String> sheeps = new HashSet<>();
+	private final String PREFIX = "[DiscoSheep] ";
 
 	@Override
 	public void onEnable() {
@@ -26,20 +26,44 @@ public class DiscoSheep extends JavaPlugin {
 	}
 
 	private void registerEvents() {
-		new DiscoSheepEvent(this.sheeps);
 		final PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new EntityDamage(), this);
+		pm.registerEvents(new EntityDamage(this.sheeps), this);
 		final FileConfiguration config = this.getConfig();
+		int speed = config.getInt("speed");
+		if(speed <= 0) {
+			this.consoleWarning("Set speed to " + speed + " ticks is not safe, reverting to default...");
+			speed = 10;
+		}
+		this.console("Set speed to " + speed + " ticks");
+		double damage = config.getDouble("damage");
+		if(damage < 0.0) {
+			this.consoleWarning("Set damage to " + damage + " is not safe, reverting to default...");
+			damage = 0.0;
+		}
+		this.console("Set damage to " + damage);
+		final boolean glow = config.getBoolean("glow");
+		this.console(glow ? "Glow mode activated" : "Glow mode deactivated");
+		final boolean rocket = config.getBoolean("rocket");
+		this.console(rocket ? "Rocket mode activated" : "Rocket mode deactivated");
 		pm.registerEvents(
 				new EntityDamageByEntity(
+						this.sheeps,
 						this,
-						config.getInt("speed"),
-						config.getDouble("damage"),
-						config.getBoolean("glow"),
-						config.getBoolean("rocket")
+						speed,
+						damage,
+						glow,
+						rocket
 				),
 				this
 		);
+	}
+
+	private void console(final String message) {
+		Bukkit.getLogger().info(this.PREFIX + message);
+	}
+
+	private void consoleWarning(final String message) {
+		Bukkit.getLogger().warning(this.PREFIX + message);
 	}
 
 }
