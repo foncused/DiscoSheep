@@ -42,9 +42,9 @@ public class DiscoSheep extends JavaPlugin {
 		}
 		this.console("Set damage to " + damage);
 		final boolean glow = config.getBoolean("glow");
-		this.console(glow ? "Glow mode activated" : "Glow mode deactivated");
+		this.console(glow ? "Glow mode enabled" : "Glow mode disabled");
 		final boolean rocket = config.getBoolean("rocket");
-		this.console(rocket ? "Rocket mode activated" : "Rocket mode deactivated");
+		this.console(rocket ? "Rocket mode enabled" : "Rocket mode disabled");
 		pm.registerEvents(
 				new EntityDamageByEntity(
 						this.sheeps,
