@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class DiscoSheep extends JavaPlugin {
 
-	private Set<String> sheeps = new HashSet<>();
+	private final Set<String> sheeps = new HashSet<>();
 	private final String PREFIX = "[DiscoSheep] ";
 
 	@Override
@@ -47,7 +47,6 @@ public class DiscoSheep extends JavaPlugin {
 		this.console(rocket ? "Rocket mode enabled" : "Rocket mode disabled");
 		pm.registerEvents(
 				new EntityDamageByEntity(
-						this.sheeps,
 						this,
 						speed,
 						damage,
@@ -64,6 +63,10 @@ public class DiscoSheep extends JavaPlugin {
 
 	private void consoleWarning(final String message) {
 		Bukkit.getLogger().warning(this.PREFIX + message);
+	}
+
+	public Set<String> getSheeps() {
+		return this.sheeps;
 	}
 
 }

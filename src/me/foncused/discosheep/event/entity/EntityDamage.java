@@ -12,7 +12,7 @@ import static org.bukkit.event.entity.EntityDamageEvent.DamageCause.FALL;
 
 public class EntityDamage implements Listener {
 
-	private Set<String> sheeps;
+	private final Set<String> sheeps;
 
 	public EntityDamage(final Set<String> sheeps) {
 		this.sheeps = sheeps;

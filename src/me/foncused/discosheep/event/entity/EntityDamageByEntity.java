@@ -15,16 +15,16 @@ import java.util.Set;
 
 public class EntityDamageByEntity implements Listener {
 
-	private Set<String> sheeps;
-	private DiscoSheep plugin;
-	private int speed = 10;
-	private double damage = 1.0;
-	private boolean glow = true;
-	private boolean rocket = true;
+	private final DiscoSheep plugin;
+	private final Set<String> sheeps;
+	private final int speed;
+	private final double damage;
+	private final boolean glow;
+	private final boolean rocket;
 
-	public EntityDamageByEntity(final Set<String> sheeps, final DiscoSheep plugin, final int speed, final double damage, final boolean glow, final boolean rocket) {
-		this.sheeps = sheeps;
+	public EntityDamageByEntity(final DiscoSheep plugin, final int speed, final double damage, final boolean glow, final boolean rocket) {
 		this.plugin = plugin;
+		this.sheeps = this.plugin.getSheeps();
 		this.speed = speed;
 		this.damage = damage;
 		this.glow = glow;
