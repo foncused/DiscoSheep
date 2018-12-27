@@ -9,10 +9,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class DiscoSheep extends JavaPlugin {
 
-	private final Set<String> sheeps = new HashSet<>();
+	private final Set<UUID> sheeps = new HashSet<>();
 	private final String PREFIX = "[DiscoSheep] ";
 
 	@Override
@@ -65,7 +66,7 @@ public class DiscoSheep extends JavaPlugin {
 		Bukkit.getLogger().warning(this.PREFIX + message);
 	}
 
-	public Set<String> getSheeps() {
+	public Set<UUID> getSheeps() {
 		return this.sheeps;
 	}
 

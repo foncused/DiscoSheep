@@ -12,11 +12,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class EntityDamageByEntity implements Listener {
 
 	private final DiscoSheep plugin;
-	private final Set<String> sheeps;
+	private final Set<UUID> sheeps;
 	private final int speed;
 	private final double damage;
 	private final boolean glow;
@@ -78,7 +79,7 @@ public class EntityDamageByEntity implements Listener {
 						}
 					}.runTaskLater(this.plugin, 1);
 				}
-				final String uuid = sheep.getUniqueId().toString();
+				final UUID uuid = sheep.getUniqueId();
 				if(this.sheeps.add(uuid)) {
 					sheep.setGlowing(this.glow);
 					new BukkitRunnable() {

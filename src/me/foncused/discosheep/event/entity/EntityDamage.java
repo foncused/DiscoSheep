@@ -7,14 +7,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.Set;
+import java.util.UUID;
 
 import static org.bukkit.event.entity.EntityDamageEvent.DamageCause.FALL;
 
 public class EntityDamage implements Listener {
 
-	private final Set<String> sheeps;
+	private final Set<UUID> sheeps;
 
-	public EntityDamage(final Set<String> sheeps) {
+	public EntityDamage(final Set<UUID> sheeps) {
 		this.sheeps = sheeps;
 	}
 
@@ -25,7 +26,7 @@ public class EntityDamage implements Listener {
 		}
 		if(event.getCause() == FALL) {
 			final Entity entity = event.getEntity();
-			if(entity instanceof Sheep && this.sheeps.contains(entity.getUniqueId().toString())) {
+			if(entity instanceof Sheep && this.sheeps.contains(entity.getUniqueId())) {
 				event.setDamage(0.0);
 			}
 		}
