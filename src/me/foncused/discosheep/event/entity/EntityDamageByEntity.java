@@ -49,10 +49,12 @@ public class EntityDamageByEntity implements Listener {
 				}
 				if(this.rocket) {
 					new BukkitRunnable() {
+						@Override
 						public void run() {
 							sheep.setVelocity(new Vector(0, 3, 0));
 							new BukkitRunnable() {
 								int count = 10;
+								@Override
 								public void run() {
 									if(count == 0) {
 										this.cancel();
@@ -85,6 +87,7 @@ public class EntityDamageByEntity implements Listener {
 					new BukkitRunnable() {
 						final DyeColor[] colors = DyeColor.values();
 						int i = 0;
+						@Override
 						public void run() {
 							if(sheep.isValid() && (!(sheep.isDead()))) {
 								if(i == colors.length) {
