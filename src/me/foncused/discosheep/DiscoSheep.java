@@ -13,13 +13,18 @@ import java.util.UUID;
 
 public class DiscoSheep extends JavaPlugin {
 
-	private final Set<UUID> sheeps = new HashSet<>();
+	private Set<UUID> sheeps;
 	private final String PREFIX = "[DiscoSheep] ";
 
 	@Override
 	public void onEnable() {
+		this.registerSheeps();
 		this.registerConfig();
 		this.registerEvents();
+	}
+
+	private void registerSheeps() {
+		this.sheeps = new HashSet<>();
 	}
 
 	private void registerConfig() {
@@ -28,7 +33,7 @@ public class DiscoSheep extends JavaPlugin {
 
 	private void registerEvents() {
 		final PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new EntityDamage(this.sheeps), this);
+		pm.registerEvents(new EntityDamage(this), this);
 		final FileConfiguration config = this.getConfig();
 		int speed = config.getInt("speed");
 		if(speed <= 0) {
@@ -66,8 +71,16 @@ public class DiscoSheep extends JavaPlugin {
 		Bukkit.getLogger().warning(this.PREFIX + message);
 	}
 
-	public Set<UUID> getSheeps() {
-		return this.sheeps;
+	public boolean addSheep(final UUID uuid) {
+		return this.sheeps.add(uuid);
+	}
+
+	public boolean removeSheep(final UUID uuid) {
+		return this.sheeps.remove(uuid);
+	}
+
+	public boolean getSheep(final UUID uuid) {
+		return this.sheeps.contains(uuid);
 	}
 
 }

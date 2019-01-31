@@ -11,13 +11,11 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.Set;
 import java.util.UUID;
 
 public class EntityDamageByEntity implements Listener {
 
 	private final DiscoSheep plugin;
-	private final Set<UUID> sheeps;
 	private final int speed;
 	private final double damage;
 	private final boolean glow;
@@ -25,7 +23,6 @@ public class EntityDamageByEntity implements Listener {
 
 	public EntityDamageByEntity(final DiscoSheep plugin, final int speed, final double damage, final boolean glow, final boolean rocket) {
 		this.plugin = plugin;
-		this.sheeps = this.plugin.getSheeps();
 		this.speed = speed;
 		this.damage = damage;
 		this.glow = glow;
@@ -82,7 +79,7 @@ public class EntityDamageByEntity implements Listener {
 					}.runTaskLater(this.plugin, 1);
 				}
 				final UUID uuid = sheep.getUniqueId();
-				if(this.sheeps.add(uuid)) {
+				if(this.plugin.addSheep(uuid)) {
 					sheep.setGlowing(this.glow);
 					new BukkitRunnable() {
 						final DyeColor[] colors = DyeColor.values();
@@ -96,7 +93,7 @@ public class EntityDamageByEntity implements Listener {
 								sheep.setColor(colors[i]);
 								i++;
 							} else {
-								sheeps.remove(uuid);
+								plugin.removeSheep(uuid);
 							}
 						}
 					}.runTaskTimer(this.plugin, 0, this.speed);
