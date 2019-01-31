@@ -71,16 +71,16 @@ public class DiscoSheep extends JavaPlugin {
 		Bukkit.getLogger().warning(this.PREFIX + message);
 	}
 
+	public boolean getSheep(final UUID uuid) {
+		return this.sheeps.contains(uuid);
+	}
+
 	public boolean addSheep(final UUID uuid) {
 		return this.sheeps.add(uuid);
 	}
 
 	public boolean removeSheep(final UUID uuid) {
 		return this.sheeps.remove(uuid);
-	}
-
-	public boolean getSheep(final UUID uuid) {
-		return this.sheeps.contains(uuid);
 	}
 
 }
