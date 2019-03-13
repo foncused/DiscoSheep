@@ -19,9 +19,6 @@ public class EntityDamage implements Listener {
 
 	@EventHandler
 	public void onEntityDamage(final EntityDamageEvent event) {
-		/*if(this.sheeps == null) {
-			return;
-		}*/
 		if(event.getCause() == FALL) {
 			final Entity entity = event.getEntity();
 			if(entity instanceof Sheep && this.plugin.getSheep(entity.getUniqueId())) {

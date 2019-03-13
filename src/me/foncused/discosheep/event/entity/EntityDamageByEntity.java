@@ -21,7 +21,13 @@ public class EntityDamageByEntity implements Listener {
 	private final boolean glow;
 	private final boolean rocket;
 
-	public EntityDamageByEntity(final DiscoSheep plugin, final int speed, final double damage, final boolean glow, final boolean rocket) {
+	public EntityDamageByEntity(
+			final DiscoSheep plugin,
+			final int speed,
+			final double damage,
+			final boolean glow,
+			final boolean rocket
+	) {
 		this.plugin = plugin;
 		this.speed = speed;
 		this.damage = damage;
