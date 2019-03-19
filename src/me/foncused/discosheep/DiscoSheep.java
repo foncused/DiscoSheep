@@ -35,21 +35,21 @@ public class DiscoSheep extends JavaPlugin {
 		final PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new EntityDamage(this), this);
 		final FileConfiguration config = this.getConfig();
-		int speed = config.getInt("speed");
+		int speed = config.getInt("speed", 5);
 		if(speed <= 0) {
 			this.consoleWarning("Set speed to " + speed + " ticks is not safe, reverting to default...");
 			speed = 10;
 		}
 		this.console("Set speed to " + speed + " ticks");
-		double damage = config.getDouble("damage");
+		double damage = config.getDouble("damage", 0.0);
 		if(damage < 0.0) {
 			this.consoleWarning("Set damage to " + damage + " is not safe, reverting to default...");
 			damage = 0.0;
 		}
 		this.console("Set damage to " + damage);
-		final boolean glow = config.getBoolean("glow");
+		final boolean glow = config.getBoolean("glow", true);
 		this.console(glow ? "Glow mode enabled" : "Glow mode disabled");
-		final boolean rocket = config.getBoolean("rocket");
+		final boolean rocket = config.getBoolean("rocket", true);
 		this.console(rocket ? "Rocket mode enabled" : "Rocket mode disabled");
 		pm.registerEvents(
 				new EntityDamageByEntity(
