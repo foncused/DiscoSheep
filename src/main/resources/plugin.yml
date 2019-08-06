@@ -2,7 +2,6 @@ name: DiscoSheep
 main: me.foncused.discosheep.DiscoSheep
 version: 1.0.1
 author: foncused
-api-version: 1.14
 
 permissions:
   discosheep.damage:
