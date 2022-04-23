@@ -1,6 +1,7 @@
 package me.foncused.discosheep.event.entity;
 
 import me.foncused.discosheep.DiscoSheep;
+import me.foncused.discosheep.config.ConfigManager;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -16,41 +17,28 @@ import java.util.UUID;
 public class EntityDamageByEntity implements Listener {
 
 	private final DiscoSheep plugin;
-	private final int speed;
-	private final double damage;
-	private final boolean glow;
-	private final boolean rocket;
+	private final ConfigManager cm;
 
-	public EntityDamageByEntity(
-		final DiscoSheep plugin,
-		final int speed,
-		final double damage,
-		final boolean glow,
-		final boolean rocket
-	) {
+	public EntityDamageByEntity(final DiscoSheep plugin) {
 		this.plugin = plugin;
-		this.speed = speed;
-		this.damage = damage;
-		this.glow = glow;
-		this.rocket = rocket;
+		this.cm = this.plugin.getConfigManager();
 	}
 
 	@EventHandler
 	public void onEntityDamageByEntity(final EntityDamageByEntityEvent event) {
 		final Entity damager = event.getDamager();
-		if(damager instanceof Player) {
-			final Player player = (Player) damager;
+		if(damager instanceof final Player player) {
 			if(!(player.hasPermission("discosheep.damage"))) {
 				return;
 			}
 			final Entity damaged = event.getEntity();
-			if(damaged instanceof Sheep) {
-				final Sheep sheep = (Sheep) damaged;
-				event.setDamage(this.damage);
-				if(this.damage == 0.0) {
+			if(damaged instanceof final Sheep sheep) {
+				final double damage = this.cm.getDamage();
+				event.setDamage(damage);
+				/*if(damage == 0.0) {
 					sheep.setInvulnerable(true);
-				}
-				if(this.rocket) {
+				}*/
+				if(this.cm.isRocket()) {
 					new BukkitRunnable() {
 						@Override
 						public void run() {
@@ -86,7 +74,7 @@ public class EntityDamageByEntity implements Listener {
 				}
 				final UUID uuid = sheep.getUniqueId();
 				if(this.plugin.addSheep(uuid)) {
-					sheep.setGlowing(this.glow);
+					sheep.setGlowing(this.cm.isGlow());
 					new BukkitRunnable() {
 						final DyeColor[] colors = DyeColor.values();
 						int i = 0;
@@ -102,7 +90,7 @@ public class EntityDamageByEntity implements Listener {
 								plugin.removeSheep(uuid);
 							}
 						}
-					}.runTaskTimer(this.plugin, 0, this.speed);
+					}.runTaskTimer(this.plugin, 0, this.cm.getSpeed());
 				}
 			}
 		}

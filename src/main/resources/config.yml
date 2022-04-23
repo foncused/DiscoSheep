@@ -1,12 +1,11 @@
 # @plugin DiscoSheep
-# @version 1.0.4
+# @version 1.0.5
 # @author foncused
 
 # The speed in ticks to iterate through the sheep colors
 speed: 5
 
 # The damage done to the sheep when damaged by a player
-# Setting this to 0.0 will make the sheep invulnerable
 damage: 0.0
 
 # Should the sheep glow when damaged?
