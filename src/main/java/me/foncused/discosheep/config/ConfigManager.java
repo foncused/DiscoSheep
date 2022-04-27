@@ -16,6 +16,8 @@ public class ConfigManager {
 	}
 
 	public void validate() {
+
+		// speed
 		final int speed = this.config.getInt("speed", 5);
 		if(speed <= 0) {
 			this.speed = 5;
@@ -24,6 +26,8 @@ public class ConfigManager {
 			this.speed = speed;
 		}
 		DiscoSheepUtil.console("Set speed to " + this.speed);
+
+		// damage
 		final double damage = this.config.getDouble("damage", 0.0);
 		if(damage < 0.0) {
 			this.damage = 0.0;
@@ -32,12 +36,17 @@ public class ConfigManager {
 			this.damage = damage;
 		}
 		DiscoSheepUtil.console("Set damage to " + this.damage);
+
+		// glow
 		final boolean glow = config.getBoolean("glow", true);
 		this.glow = glow;
 		DiscoSheepUtil.console(glow ? "Glow mode enabled" : "Glow mode disabled");
+
+		// rocket
 		final boolean rocket = config.getBoolean("rocket", true);
 		this.rocket = rocket;
 		DiscoSheepUtil.console(rocket ? "Rocket mode enabled" : "Rocket mode disabled");
+
 	}
 
 	public int getSpeed() {
