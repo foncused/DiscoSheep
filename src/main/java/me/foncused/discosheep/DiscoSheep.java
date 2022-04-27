@@ -4,7 +4,6 @@ import me.foncused.discosheep.config.ConfigManager;
 import me.foncused.discosheep.event.entity.EntityDamage;
 import me.foncused.discosheep.event.entity.EntityDamageByEntity;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,9 +13,10 @@ import java.util.UUID;
 
 public class DiscoSheep extends JavaPlugin {
 
+	public static final String PREFIX = "[DiscoSheep] ";
+
 	private Set<UUID> sheeps;
 	private ConfigManager cm;
-	public static final String PREFIX = "[DiscoSheep] ";
 
 	@Override
 	public void onEnable() {
@@ -31,13 +31,8 @@ public class DiscoSheep extends JavaPlugin {
 
 	private void registerConfig() {
 		this.saveDefaultConfig();
-		final FileConfiguration config = this.getConfig();
-		this.cm = new ConfigManager(
-				config.getInt("speed", 5),
-				config.getDouble("damage", 0.0),
-				config.getBoolean("glow", true),
-				config.getBoolean("rocket", true)
-		);
+		this.cm = new ConfigManager(this.getConfig());
+		this.cm.validate();
 	}
 
 	private void registerEvents() {
