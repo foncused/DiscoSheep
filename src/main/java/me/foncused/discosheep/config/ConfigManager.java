@@ -38,14 +38,12 @@ public class ConfigManager {
 		DiscoSheepUtil.console("Set damage to " + this.damage);
 
 		// glow
-		final boolean glow = config.getBoolean("glow", true);
-		this.glow = glow;
-		DiscoSheepUtil.console(glow ? "Glow mode enabled" : "Glow mode disabled");
+		this.glow = this.config.getBoolean("glow", true);
+		DiscoSheepUtil.console(this.glow ? "Glow mode enabled" : "Glow mode disabled");
 
 		// rocket
-		final boolean rocket = config.getBoolean("rocket", true);
-		this.rocket = rocket;
-		DiscoSheepUtil.console(rocket ? "Rocket mode enabled" : "Rocket mode disabled");
+		this.rocket = this.config.getBoolean("rocket", true);
+		DiscoSheepUtil.console(this.rocket ? "Rocket mode enabled" : "Rocket mode disabled");
 
 	}
 
