@@ -3,7 +3,6 @@ package me.foncused.discosheep;
 import me.foncused.discosheep.config.ConfigManager;
 import me.foncused.discosheep.event.entity.EntityDamage;
 import me.foncused.discosheep.event.entity.EntityDamageByEntity;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,7 +35,7 @@ public class DiscoSheep extends JavaPlugin {
 	}
 
 	private void registerEvents() {
-		final PluginManager pm = Bukkit.getPluginManager();
+		final PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new EntityDamage(this), this);
 		pm.registerEvents(new EntityDamageByEntity(this), this);
 	}
