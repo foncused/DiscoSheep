@@ -35,9 +35,6 @@ public class EntityDamageByEntity implements Listener {
 			if(damaged instanceof final Sheep sheep) {
 				final double damage = this.cm.getDamage();
 				event.setDamage(damage);
-				/*if(damage == 0.0) {
-					sheep.setInvulnerable(true);
-				}*/
 				if(this.cm.isRocket()) {
 					new BukkitRunnable() {
 						@Override
@@ -47,7 +44,7 @@ public class EntityDamageByEntity implements Listener {
 								int count = 10;
 								@Override
 								public void run() {
-									if(count == 0) {
+									if(count <= 0) {
 										this.cancel();
 									}
 									final World world = sheep.getWorld();
@@ -88,6 +85,7 @@ public class EntityDamageByEntity implements Listener {
 								i++;
 							} else {
 								plugin.removeSheep(uuid);
+								this.cancel();
 							}
 						}
 					}.runTaskTimer(this.plugin, 0, this.cm.getSpeed());
