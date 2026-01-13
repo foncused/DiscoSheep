@@ -56,7 +56,7 @@ public class EntityDamageByEntity implements Listener {
 											1F
 									);
 									world.spawnParticle(
-											Particle.EXPLOSION_LARGE,
+											Particle.EXPLOSION,
 											location,
 											1,
 											0,

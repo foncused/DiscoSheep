@@ -21,7 +21,7 @@ public class ConfigManager {
 		final int speed = this.config.getInt("speed", 5);
 		if(speed <= 0) {
 			this.speed = 5;
-			DiscoSheepUtil.consoleWarning("Set speed to " + speed + " ticks is not safe, reverting to default...");
+			DiscoSheepUtil.consoleWarning("Set speed to " + speed + " ticks is not safe, reverting to default ...");
 		} else {
 			this.speed = speed;
 		}
@@ -31,7 +31,7 @@ public class ConfigManager {
 		final double damage = this.config.getDouble("damage", 0.0);
 		if(damage < 0.0) {
 			this.damage = 0.0;
-			DiscoSheepUtil.consoleWarning("Set damage to " + damage + " is not safe, reverting to default...");
+			DiscoSheepUtil.consoleWarning("Set damage to " + damage + " is not safe, reverting to default ...");
 		} else {
 			this.damage = damage;
 		}
